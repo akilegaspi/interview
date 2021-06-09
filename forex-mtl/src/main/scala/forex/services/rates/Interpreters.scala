@@ -1,8 +1,13 @@
 package forex.services.rates
 
-import cats.Applicative
-import interpreters._
+import cats.effect.Sync
+import forex.config.OneFrameConfig
+import interpreters.{OneFrameTest, _}
+import org.http4s.client.Client
 
 object Interpreters {
-  def dummy[F[_]: Applicative]: Algebra[F] = new OneFrameDummy[F]()
+  val test: Algebra[TestM] =
+    OneFrameTest()
+  def live[F[_]: Sync](config: OneFrameConfig, httpClient: Client[F]): Algebra[F] =
+    OneFrameLive[F](config, httpClient)
 }
