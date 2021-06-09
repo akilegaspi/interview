@@ -39,4 +39,16 @@ object Currency {
     case "USD" => USD
   }
 
+  val all: List[Currency] =
+    List(AUD, CAD, CHF, EUR, GBP, NZD, JPY, SGD, USD)
+
+  /**
+   *  Lists all of the currency that is not the currency passed
+   *  @param currency: Currency filtered out
+   *  @return List[Currency]: All currencies that is not the currency passed
+   */
+  def allBut(currency: Currency): List[Currency] =
+    all.filter(_ != currency)
+
+
 }

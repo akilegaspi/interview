@@ -1,6 +1,6 @@
 package forex.programs.rates
 
-import forex.services.rates.errors.{ Error => RatesServiceError }
+import forex.services.database.errors.StoreError
 
 object errors {
 
@@ -9,7 +9,7 @@ object errors {
     final case class RateLookupFailed(msg: String) extends Error
   }
 
-  def toProgramError(error: RatesServiceError): Error = error match {
-    case RatesServiceError.OneFrameLookupFailed(msg) => Error.RateLookupFailed(msg)
+  def toProgramError(error: StoreError): Error = error match {
+    case StoreError.NotFoundError => Error.RateLookupFailed("Rate Pair not found")
   }
 }

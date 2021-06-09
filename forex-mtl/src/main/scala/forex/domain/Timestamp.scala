@@ -7,4 +7,12 @@ case class Timestamp(value: OffsetDateTime) extends AnyVal
 object Timestamp {
   def now: Timestamp =
     Timestamp(OffsetDateTime.now)
+
+
+  final val mockOffsetDateTime: OffsetDateTime =
+    OffsetDateTime.MIN
+
+  final val test: Timestamp =
+    Timestamp(mockOffsetDateTime)
+
 }
